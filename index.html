@@ -3,107 +3,168 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Starpulse Institutional Trading Dashboard</title>
+    <title>Starpulse.in - Institutional F&O Analytics</title>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <style>
-        body {
-            background-color: #0d1117;
-            color: #c9d1d9;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-            margin: 0;
-            padding: 20px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-        }
-        .dashboard-card {
-            background-color: #161b22;
-            border: 1px solid #30363d;
-            border-radius: 8px;
-            padding: 30px;
-            width: 100%;
-            max-width: 500px;
-            box-shadow: 0 4px 12px rgba(0,0,0,0.5);
-        }
-        h1 {
-            font-size: 22px;
-            color: #58a6ff;
-            margin-top: 0;
-            border-bottom: 1px solid #30363d;
-            padding-bottom: 10px;
-        }
-        .status-box {
-            margin: 20px 0;
-            padding: 15px;
-            background: #21262d;
-            border-radius: 6px;
-            border-left: 4px solid #238636;
-        }
-        .label {
-            font-size: 12px;
-            color: #8b949e;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .value {
-            font-size: 16px;
-            font-weight: bold;
-            color: #f0f6fc;
-            margin-top: 5px;
-        }
-        .refresh-btn {
-            background-color: #238636;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            border-radius: 6px;
-            font-weight: bold;
-            cursor: pointer;
-            width: 100%;
-            transition: background 0.2s;
-        }
-        .refresh-btn:hover {
-            background-color: #2ea043;
-        }
+        body { background-color: #0b0f19; color: #f3f4f6; font-family: system-ui, -apple-system, sans-serif; }
+        .card { background: #111827; border: 1px solid #1f2937; }
+        .glow-green { color: #10b981; text-shadow: 0 0 10px rgba(16, 185, 129, 0.2); }
+        .glow-red { color: #ef4444; text-shadow: 0 0 10px rgba(239, 68, 68, 0.2); }
     </style>
 </head>
-<body>
+<body class="min-h-screen p-4 md:p-6">
 
-    <div class="dashboard-card">
-        <h1>⚡ Starpulse.in Dashboard</h1>
-        <p style="color: #8b949e; font-size: 14px;">Institutional Options & Order Block Engine</p>
-        
-        <div class="status-box">
-            <div class="label">Backend Status</div>
-            <div class="value" id="status-text">Connecting to pipeline...</div>
+    <!-- Header Section -->
+    <header class="flex flex-col md:flex-row justify-between items-center pb-6 mb-6 border-b border-gray-800">
+        <div>
+            <h1 class="text-2xl font-black tracking-wider text-blue-500">STARPULSE<span class="text-white">.IN</span></h1>
+            <p class="text-xs text-gray-400">Institutional-Grade F&O Analytics Engine</p>
         </div>
-
-        <div class="status-box" style="border-left-color: #1f6feb;">
-            <div class="label">Last Updated Timestamp</div>
-            <div class="value" id="timestamp-text">Fetching...</div>
+        <div class="mt-4 md:mt-0 flex items-center space-x-4">
+            <span class="text-xs bg-gray-800 px-3 py-1.5 rounded-full border border-gray-700">
+                Status: <span class="glow-green font-bold">● LIVE (3-Min Sync)</span>
+            </span>
+            <span id="last-updated" class="text-xs text-gray-400">Syncing...</span>
         </div>
+    </header>
 
-        <button class="refresh-btn" onclick="fetchData()">Refresh Dashboard</button>
-    </div>
+    <!-- Main Grid Dashboard -->
+    <main class="grid grid-cols-1 lg:grid-cols-3 gap-6">
 
+        <!-- 1. Sector Heatmap Module -->
+        <section class="card p-4 rounded-xl shadow-lg">
+            <h2 class="text-sm font-bold uppercase tracking-wide text-gray-400 mb-4">⚡ Sector Heatmap</h2>
+            <div id="sector-heatmap" class="space-y-3">
+                <p class="text-sm text-gray-500">Loading sectors...</p>
+            </div>
+        </section>
+
+        <!-- 2. Volume Shockers Module -->
+        <section class="card p-4 rounded-xl shadow-lg">
+            <h2 class="text-sm font-bold uppercase tracking-wide text-gray-400 mb-4">🚀 Volume Shockers (22D vs 15M)</h2>
+            <div id="volume-shockers" class="space-y-3">
+                <p class="text-sm text-gray-500">Loading volume data...</p>
+            </div>
+        </section>
+
+        <!-- 3. PDH / PDL Breakouts Module -->
+        <section class="card p-4 rounded-xl shadow-lg">
+            <h2 class="text-sm font-bold uppercase tracking-wide text-gray-400 mb-4">🎯 PDH / PDL Breakouts</h2>
+            <div id="breakouts" class="space-y-3">
+                <p class="text-sm text-gray-500">Loading breakout signals...</p>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Detailed Table: Long/Short Buildup -->
+    <section class="mt-6 card p-4 rounded-xl shadow-lg">
+        <h2 class="text-sm font-bold uppercase tracking-wide text-gray-400 mb-4">📊 Long & Short Buildup (vs 30-Day OI Avg)</h2>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-sm text-gray-300">
+                <thead class="bg-gray-800 text-gray-400 uppercase text-xs">
+                    <tr>
+                        <th class="p-3">Symbol</th>
+                        <th class="p-3">Buildup Type</th>
+                        <th class="p-3">Current OI</th>
+                        <th class="p-3">30-Day Avg OI</th>
+                        <th class="p-3">OI vs 30D Avg (%)</th>
+                    </tr>
+                </thead>
+                <tbody id="buildup-table-body">
+                    <tr><td colspan="5" class="p-4 text-center text-gray-500">Loading market structure...</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </section>
+
+    <!-- JavaScript to Fetch & Render data.json -->
     <script>
-        async function fetchData() {
+        async function fetchDashboardData() {
             try {
-                // GitHub raw ya Netlify deployment se data.json fetch karna
+                // Cache buster (?t=timestamp) lagaya hai taaki browser purana JSON cache na kare
                 const response = await fetch('data.json?t=' + new Date().getTime());
-                if (!response.ok) throw new Error("Data file not found yet.");
+                if (!response.ok) throw new Error('Failed to load data.json');
                 
                 const data = await response.json();
-                document.getElementById('status-text').innerText = data.message || "Active";
-                document.getElementById('timestamp-text').innerText = data.timestamp || "Just now";
+                
+                // Update Timestamp
+                document.getElementById('last-updated').innerText = `Last Updated: ${data.timestamp}`;
+
+                // 1. Render Sector Heatmap
+                const sectorContainer = document.getElementById('sector-heatmap');
+                sectorContainer.innerHTML = '';
+                data.sector_performance.forEach(sec => {
+                    const isGreen = sec.avg_change_pct >= 0;
+                    sectorContainer.innerHTML += `
+                        <div class="flex justify-between items-center p-2.5 rounded bg-gray-900/50 border border-gray-800">
+                            <span class="font-semibold text-sm">${sec.sector}</span>
+                            <span class="${isGreen ? 'glow-green' : 'glow-red'} font-bold text-sm">
+                                ${isGreen ? '+' : ''}${sec.avg_change_pct}%
+                            </span>
+                        </div>`;
+                });
+
+                // 2. Render Volume Shockers
+                const volContainer = document.getElementById('volume-shockers');
+                volContainer.innerHTML = '';
+                if(data.volume_shockers.length === 0) {
+                    volContainer.innerHTML = `<p class="text-sm text-gray-500">No unusual volume spikes detected.</p>`;
+                } else {
+                    data.volume_shockers.forEach(vol => {
+                        volContainer.innerHTML += `
+                            <div class="flex justify-between items-center p-2.5 rounded bg-gray-900/50 border border-gray-800">
+                                <span class="font-semibold text-sm text-blue-400">${vol.symbol}</span>
+                                <span class="bg-yellow-500/10 text-yellow-500 border border-yellow-500/20 px-2 py-0.5 rounded text-xs font-bold">${vol.volume_multiplier} Vol</span>
+                            </div>`;
+                    });
+                }
+
+                // 3. Render PDH / PDL Breakouts
+                const breakoutContainer = document.getElementById('breakouts');
+                breakoutContainer.innerHTML = '';
+                if(data.pdh_pdl_breakouts.length === 0) {
+                    breakoutContainer.innerHTML = `<p class="text-sm text-gray-500">Trading inside previous day range.</p>`;
+                } else {
+                    data.pdh_pdl_breakouts.forEach(b => {
+                        const isBullish = b.status.includes('Bullish');
+                        breakoutContainer.innerHTML += `
+                            <div class="flex justify-between items-center p-2.5 rounded bg-gray-900/50 border border-gray-800">
+                                <div>
+                                    <span class="font-semibold text-sm">${b.symbol}</span>
+                                    <span class="block text-xs text-gray-500">LTP: ₹${b.ltp}</span>
+                                </div>
+                                <span class="${isBullish ? 'glow-green' : 'glow-red'} text-xs font-bold">${b.status}</span>
+                            </div>`;
+                    });
+                }
+
+                // 4. Render Buildup Table
+                const tableBody = document.getElementById('buildup-table-body');
+                tableBody.innerHTML = '';
+                data.buildup_analysis.forEach(item => {
+                    tableBody.innerHTML += `
+                        <tr class="border-b border-gray-800/50 hover:bg-gray-800/20">
+                            <td class="p-3 font-bold text-white">${item.symbol}</td>
+                            <td class="p-3 text-blue-400 font-medium">${item.buildup}</td>
+                            <td class="p-3">${item.current_oi.toLocaleString()}</td>
+                            <td class="p-3 text-gray-400">${item.avg_oi_30d.toLocaleString()}</td>
+                            <td class="p-3 font-semibold ${item.oi_vs_30d_change_pct >= 0 ? 'text-emerald-400' : 'text-rose-400'}">
+                                ${item.oi_vs_30d_change_pct >= 0 ? '+' : ''}${item.oi_vs_30d_change_pct}%
+                            </td>
+                        </tr>`;
+                });
+
             } catch (error) {
-                document.getElementById('status-text').innerText = "Waiting for first workflow run...";
-                document.getElementById('timestamp-text').innerText = "N/A";
+                console.error("Error fetching data:", error);
             }
         }
 
-        // Page load hote hi data fetch karein
-        fetchData();
+        // Initial Load
+        fetchDashboardData();
+
+        // Auto-refresh every 3 minutes (180,000 ms) matching the backend cycle
+        setInterval(fetchDashboardData, 180000);
     </script>
 </body>
 </html>
