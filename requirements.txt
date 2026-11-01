@@ -3,7 +3,3 @@ pyotp
 requests
 logzero
 websocket-client
-pandas
-numpy
-urllib3
-python-dateutil
