@@ -25,7 +25,7 @@ def get_session():
         print("Error during authentication:", e)
         return None
 
-# 2. Main Analytics Engine (Fast & Pure Python - No Heavy Libraries)
+# 2. Main Analytics Engine (Fast & Pure Python)
 def analyze_market_data(smartApi):
     dashboard_data = {
         "timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
@@ -37,7 +37,6 @@ def analyze_market_data(smartApi):
     }
 
     # F&O Stocks Sample Structure
-    # Note: Connect your SmartAPI token loop here for live candles/depth
     stocks_data = [
         {"symbol": "NIFTY", "sector": "INDEX", "ltp": 24200, "pdh": 24150, "pdl": 23950, "oi": 120000, "avg_oi_30d": 95000, "vol_15m": 45000, "avg_vol_22d": 20000, "p_change": 0.8, "oi_change": 5.2},
         {"symbol": "BANKNIFTY", "sector": "INDEX", "ltp": 52100, "pdh": 51900, "pdl": 51600, "oi": 98000, "avg_oi_30d": 85000, "vol_15m": 35000, "avg_vol_22d": 15000, "p_change": 1.1, "oi_change": 6.4},
@@ -115,7 +114,7 @@ def analyze_market_data(smartApi):
             "status": "Green (Bullish)" if avg_change > 0 else "Red (Bearish)"
         })
 
-    # E. 15-Min Momentum Ranking (Sorted by Highest OI & Price Change)
+    # E. 15-Min Momentum Ranking
     sorted_stocks = sorted(dashboard_data["buildup_analysis"], key=lambda x: x["oi_change_pct"], reverse=True)
     for rank, item in enumerate(sorted_stocks, 1):
         if item["buildup"] in ["Long Buildup", "Short Buildup"]:
