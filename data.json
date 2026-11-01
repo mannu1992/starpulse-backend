@@ -1,0 +1,177 @@
+{
+    "timestamp": "2026-11-01 09:50:47",
+    "buildup_analysis": [
+        {
+            "symbol": "NIFTY",
+            "buildup": "Long Buildup",
+            "current_oi": 120000,
+            "avg_oi_30d": 95000,
+            "oi_vs_30d_change_pct": 26.32,
+            "oi_change_pct": 5.2
+        },
+        {
+            "symbol": "BANKNIFTY",
+            "buildup": "Long Buildup",
+            "current_oi": 98000,
+            "avg_oi_30d": 85000,
+            "oi_vs_30d_change_pct": 15.29,
+            "oi_change_pct": 6.4
+        },
+        {
+            "symbol": "RELIANCE",
+            "buildup": "Long Buildup",
+            "current_oi": 85000,
+            "avg_oi_30d": 70000,
+            "oi_vs_30d_change_pct": 21.43,
+            "oi_change_pct": 8.1
+        },
+        {
+            "symbol": "SBIN",
+            "buildup": "Short Buildup",
+            "current_oi": 60000,
+            "avg_oi_30d": 65000,
+            "oi_vs_30d_change_pct": -7.69,
+            "oi_change_pct": 4.5
+        },
+        {
+            "symbol": "HDFCBANK",
+            "buildup": "Long Buildup",
+            "current_oi": 110000,
+            "avg_oi_30d": 90000,
+            "oi_vs_30d_change_pct": 22.22,
+            "oi_change_pct": 7.3
+        },
+        {
+            "symbol": "TCS",
+            "buildup": "Long Unwinding",
+            "current_oi": 40000,
+            "avg_oi_30d": 42000,
+            "oi_vs_30d_change_pct": -4.76,
+            "oi_change_pct": -2.3
+        },
+        {
+            "symbol": "INFY",
+            "buildup": "Short Buildup",
+            "current_oi": 55000,
+            "avg_oi_30d": 50000,
+            "oi_vs_30d_change_pct": 10.0,
+            "oi_change_pct": 3.1
+        }
+    ],
+    "sector_performance": [
+        {
+            "sector": "INDEX",
+            "avg_change_pct": 0.95,
+            "status": "Green (Bullish)"
+        },
+        {
+            "sector": "OIL & GAS",
+            "avg_change_pct": 1.2,
+            "status": "Green (Bullish)"
+        },
+        {
+            "sector": "BANKING",
+            "avg_change_pct": 0.15,
+            "status": "Green (Bullish)"
+        },
+        {
+            "sector": "IT",
+            "avg_change_pct": -0.95,
+            "status": "Red (Bearish)"
+        }
+    ],
+    "ranking_15min": [
+        {
+            "rank": 1,
+            "symbol": "RELIANCE",
+            "buildup": "Long Buildup",
+            "oi_change_pct": 8.1
+        },
+        {
+            "rank": 2,
+            "symbol": "HDFCBANK",
+            "buildup": "Long Buildup",
+            "oi_change_pct": 7.3
+        },
+        {
+            "rank": 3,
+            "symbol": "BANKNIFTY",
+            "buildup": "Long Buildup",
+            "oi_change_pct": 6.4
+        },
+        {
+            "rank": 4,
+            "symbol": "NIFTY",
+            "buildup": "Long Buildup",
+            "oi_change_pct": 5.2
+        },
+        {
+            "rank": 5,
+            "symbol": "SBIN",
+            "buildup": "Short Buildup",
+            "oi_change_pct": 4.5
+        },
+        {
+            "rank": 6,
+            "symbol": "INFY",
+            "buildup": "Short Buildup",
+            "oi_change_pct": 3.1
+        }
+    ],
+    "volume_shockers": [
+        {
+            "symbol": "NIFTY",
+            "vol_15m": 45000,
+            "avg_vol_22d": 20000,
+            "volume_multiplier": "2.25x"
+        },
+        {
+            "symbol": "BANKNIFTY",
+            "vol_15m": 35000,
+            "avg_vol_22d": 15000,
+            "volume_multiplier": "2.33x"
+        },
+        {
+            "symbol": "RELIANCE",
+            "vol_15m": 12000,
+            "avg_vol_22d": 4000,
+            "volume_multiplier": "3.0x"
+        },
+        {
+            "symbol": "HDFCBANK",
+            "vol_15m": 22000,
+            "avg_vol_22d": 10000,
+            "volume_multiplier": "2.2x"
+        }
+    ],
+    "pdh_pdl_breakouts": [
+        {
+            "symbol": "NIFTY",
+            "ltp": 24200,
+            "pdh": 24150,
+            "pdl": 23950,
+            "status": "PDH Breakout (Bullish)"
+        },
+        {
+            "symbol": "BANKNIFTY",
+            "ltp": 52100,
+            "pdh": 51900,
+            "pdl": 51600,
+            "status": "PDH Breakout (Bullish)"
+        },
+        {
+            "symbol": "RELIANCE",
+            "ltp": 2750,
+            "pdh": 2740,
+            "pdl": 2710,
+            "status": "PDH Breakout (Bullish)"
+        },
+        {
+            "symbol": "HDFCBANK",
+            "ltp": 1740,
+            "pdh": 1730,
+            "pdl": 1710,
+            "status": "PDH Breakout (Bullish)"
+        }
+    ]
+}
